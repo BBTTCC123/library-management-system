@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: library-management-system
+  datasource:
+    url: jdbc:h2:mem:librarydb;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: Asia/Shanghai
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+# ---------------------------------------------------------------------------
+# Application specific configuration
+# ---------------------------------------------------------------------------
+app:
+  jwt:
+    # HS256 secret. MUST be at least 32 bytes. Override with env JWT_SECRET in production.
+    secret: ${JWT_SECRET:change-me-in-production-please-use-a-long-random-secret-key-1234567890}
+    expiration-ms: 86400000        # 24 hours
+    issuer: library-management-system
+  borrow:
+    max-books-per-user: 5          # 每个用户最多同时借阅数量
+    loan-period-days: 30           # 默认借阅期限（天）
+    renew-period-days: 15          # 每次续借延长天数
+    max-renew-count: 1             # 最多续借次数
+    fine-per-day: 0.50             # 逾期每天罚金（元）
+
+# ---------------------------------------------------------------------------
+# OpenAPI / Swagger UI
+# ---------------------------------------------------------------------------
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+
+# ---------------------------------------------------------------------------
+# Actuator-lite health info is provided by spring-boot-starter-web + springdoc.
+# ---------------------------------------------------------------------------
+logging:
+  level:
+    root: INFO
+    com.bbttcc.library: DEBUG

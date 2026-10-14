@@ -1,0 +1,10 @@
+target/
+.git/
+.idea/
+.vscode/
+*.iml
+*.log
+README.md
+docs/
+requests.http
+docker-compose.yml

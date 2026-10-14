@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  h2:
+    console:
+      enabled: false
+
+app:
+  seed:
+    enabled: false
+  jwt:
+    secret: test-secret-key-for-unit-tests-must-be-long-enough-0123456789
+    expiration-ms: 3600000
+    issuer: library-management-system-test
+  borrow:
+    max-books-per-user: 3
+    loan-period-days: 30
+    renew-period-days: 15
+    max-renew-count: 1
+    fine-per-day: 0.50
+
+logging:
+  level:
+    root: WARN
+    com.bbttcc.library: INFO

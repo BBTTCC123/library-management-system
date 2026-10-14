@@ -1,0 +1,82 @@
+### 图书借阅管理系统 - 接口示例
+### 适用于 IntelliJ IDEA / VS Code REST Client
+### 使用顺序：先执行「登录」拿到 token，再执行其余请求。
+
+@baseUrl = http://localhost:8080
+@token = 请粘贴登录接口返回的 accessToken
+
+### 1. 注册
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "charlie",
+  "password": "charlie123",
+  "fullName": "Charlie",
+  "email": "charlie@library.local"
+}
+
+### 2. 登录（管理员）
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+### 3. 当前用户
+GET {{baseUrl}}/api/users/me
+Authorization: Bearer {{token}}
+
+### 4. 分页检索图书（公开）
+GET {{baseUrl}}/api/books?page=0&size=10&sort=title,asc
+Accept: application/json
+
+### 5. 新增图书（ADMIN / LIBRARIAN）
+POST {{baseUrl}}/api/books
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "isbn": "9787111213826",
+  "title": "Effective Java",
+  "author": "Joshua Bloch",
+  "publisher": "机械工业出版社",
+  "publishYear": 2018,
+  "categoryId": 1,
+  "totalCopies": 3,
+  "description": "Java 编程最佳实践"
+}
+
+### 6. 借书
+POST {{baseUrl}}/api/borrows
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "bookId": 1
+}
+
+### 7. 我的借阅记录
+GET {{baseUrl}}/api/borrows/me
+Authorization: Bearer {{token}}
+
+### 8. 续借
+POST {{baseUrl}}/api/borrows/1/renew
+Authorization: Bearer {{token}}
+
+### 9. 还书
+POST {{baseUrl}}/api/borrows/1/return
+Authorization: Bearer {{token}}
+
+### 10. 统计信息
+GET {{baseUrl}}/api/stats
+Authorization: Bearer {{token}}
+
+### 11. 全部分类
+GET {{baseUrl}}/api/categories
+
+### 12. 用户列表（ADMIN）
+GET {{baseUrl}}/api/users
+Authorization: Bearer {{token}}

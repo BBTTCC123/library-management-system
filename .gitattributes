@@ -1,0 +1,13 @@
+# 统一换行符，避免不同平台提交时的噪音
+* text=auto
+
+*.java text
+*.xml text
+*.yml text
+*.yaml text
+*.md text
+*.http text
+
+*.png binary
+*.jpg binary
+*.jar binary
