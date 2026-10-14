@@ -1,4 +1,13 @@
-# ---------- 构建阶段 ----------
+# ---------- 1. 前端构建 ----------
+FROM node:20-alpine AS frontend
+WORKDIR /app/frontend
+COPY frontend/package.json ./
+RUN npm install --no-fund --no-audit
+COPY frontend/ ./
+# vite.config.js 中 outDir = ../src/main/resources/static
+RUN npm run build
+
+# ---------- 2. 后端构建 ----------
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /build
 
@@ -7,9 +16,11 @@ COPY pom.xml .
 RUN mvn -B -q dependency:go-offline
 
 COPY src ./src
+# 用容器内新构建的前端产物覆盖仓库中的静态资源
+COPY --from=frontend /app/src/main/resources/static ./src/main/resources/static
 RUN mvn -B -q clean package -DskipTests
 
-# ---------- 运行阶段 ----------
+# ---------- 3. 运行 ----------
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 

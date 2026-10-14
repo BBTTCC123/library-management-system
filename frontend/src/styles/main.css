@@ -1,0 +1,143 @@
+:root {
+  --brand: #409eff;
+  --brand-dark: #2b7cd3;
+  --page-bg: #f5f7fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+  background: var(--page-bg);
+  color: #303133;
+}
+
+a {
+  text-decoration: none;
+  color: var(--brand);
+}
+
+.page-container {
+  padding: 20px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* 登录页 */
+.login-page {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1f4e79 0%, #409eff 100%);
+}
+
+.login-card {
+  width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.login-brand {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.login-brand h1 {
+  font-size: 22px;
+  margin: 8px 0 4px;
+}
+
+.login-brand p {
+  color: #909399;
+  font-size: 13px;
+  margin: 0;
+}
+
+.demo-accounts {
+  margin-top: 8px;
+  padding: 12px;
+  background: #f4f8ff;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #606266;
+  line-height: 1.9;
+}
+
+.demo-accounts .el-tag {
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+/* 统计卡片 */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  border-radius: 10px;
+}
+
+.stat-card .stat-label {
+  color: #909399;
+  font-size: 13px;
+}
+
+.stat-card .stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.stat-card .stat-icon {
+  font-size: 34px;
+  opacity: 0.9;
+}
+
+.book-title {
+  font-weight: 600;
+}
+
+.text-muted {
+  color: #909399;
+  font-size: 12px;
+}

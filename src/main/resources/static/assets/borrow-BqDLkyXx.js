@@ -1,0 +1,1 @@
+import{B as r}from"./index-5wZMwGlE.js";const t=o=>r.post("/borrows",{bookId:o}),e=o=>r.post(`/borrows/${o}/return`),w=o=>r.post(`/borrows/${o}/renew`),a=o=>r.get("/borrows/me",{params:o}),n=o=>r.get("/borrows",{params:o}),b=()=>r.get("/stats");export{a,t as b,e as c,n as d,b as g,w as r};

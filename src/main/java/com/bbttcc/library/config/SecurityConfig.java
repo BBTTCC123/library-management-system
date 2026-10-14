@@ -64,7 +64,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/me").authenticated()
                         // 其余用户管理接口仅限管理员
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                        // 其余 API 一律需要登录
+                        .requestMatchers("/api/**").authenticated()
+                        // 前端静态资源（index.html / assets / favicon）与 SPA 路由公开访问
+                        .anyRequest().permitAll()
                 )
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(restSecurityHandlers)
